@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useRouteMatch, Link, Route , Switch, useHistory, useParams } from 'react-router-dom'
+import { useRouteMatch, Link, Route , Switch, useHistory } from 'react-router-dom'
 import { useField } from './hooks'
 
 const Menu = () => {

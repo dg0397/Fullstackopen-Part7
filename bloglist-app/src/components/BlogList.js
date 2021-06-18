@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+
 import Blog from './Blog'
 import ListByButtons from './ListByButtons'
 
-const BlogList = ({ blogs, updateBlog, user,deleteBlog }) => {
+const BlogList = ({ updateBlog, user,deleteBlog }) => {
+  const blogs = useSelector(state => state.blogs)
   const [order, setOrder] = useState('Normal')
   let blogsToShow = [...blogs]
 

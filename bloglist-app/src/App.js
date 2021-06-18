@@ -13,6 +13,7 @@ import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 
 import './App.css'
+import { addBlog, initializeBlogs } from './reducers/blogReducer'
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs))
+    dispatch(initializeBlogs())
   }, [])
 
   useEffect(() => {
@@ -62,9 +63,10 @@ const App = () => {
   const handleCreateNewBlog = async (blog) => {
     try {
       blogFormRef.current.toggleVisibility()
-      const newBlog = await blogService.create(blog)
-      setBlogs(blogs.concat(newBlog))
-      dispatch(setMessage(`Added new Blog: ${newBlog.title}`,5))
+      dispatch(addBlog(blog))
+      //const newBlog = await blogService.create(blog)
+      //setBlogs(blogs.concat(newBlog))
+      //dispatch(setMessage(`Added new Blog: ${newBlog.title}`,5))
 
       //setNotification(`Added new Blog: ${newBlog.title}`)
       //setTimeout(() => {

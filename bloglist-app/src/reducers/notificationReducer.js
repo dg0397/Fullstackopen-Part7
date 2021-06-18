@@ -13,14 +13,14 @@ export const setMessage = (message,time) => {
       type : 'SET_MESSAGE',
       message
     })
-    const t = setTimeout(() => {
+    const t = window.setTimeout(() => {
       dispatch({
         type : 'SET_MESSAGE',
-        message
+        message : ''
       })
     },time*1000)
     for(let i = 0; i< t ; i++){
-      clearTimeout(t)
+      clearTimeout(i)
     }
   }
 }

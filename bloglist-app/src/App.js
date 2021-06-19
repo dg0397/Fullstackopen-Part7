@@ -13,11 +13,10 @@ import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 
 import './App.css'
-import { addBlog, initializeBlogs } from './reducers/blogReducer'
+import { addBlog, initializeBlogs, likeBlog, deleteOneBlog } from './reducers/blogReducer'
 
 
 const App = () => {
-  const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
 
   const blogFormRef = useRef()
@@ -79,9 +78,10 @@ const App = () => {
 
   const updateBlog = async(blog) => {
     try{
-      const updatedBlog = await blogService.update(blog)
-      setBlogs(blogs.map(blog => blog.id === updatedBlog.id ? updatedBlog : blog))
-      dispatch(setMessage(`Updated Blog: ${updatedBlog.title}`,5))
+      dispatch(likeBlog(blog))
+      //const updatedBlog = await blogService.update(blog)
+      //setBlogs(blogs.map(blog => blog.id === updatedBlog.id ? updatedBlog : blog))
+      //dispatch(setMessage(`Updated Blog: ${updatedBlog.title}`,5))
 
       //setNotification(`Updated Blog: ${updatedBlog.title}`)
       //setTimeout(() => {
@@ -93,9 +93,10 @@ const App = () => {
   }
   const deleteBlog = async (blogToDelete) => {
     try{
-      await blogService.deleteBlog(blogToDelete.id)
-      setBlogs(blogs.filter(blog => blog.id !== blogToDelete.id))
-      dispatch(setMessage(`Deleted Blog: ${blogToDelete.title}`,5))
+      dispatch(deleteOneBlog(blogToDelete))
+      //await blogService.deleteBlog(blogToDelete.id)
+      //setBlogs(blogs.filter(blog => blog.id !== blogToDelete.id))
+      //dispatch(setMessage(`Deleted Blog: ${blogToDelete.title}`,5))
 
       //setNotification(`Deleted Blog: ${blogToDelete.title}`)
       //setTimeout(() => {
@@ -118,7 +119,7 @@ const App = () => {
           <Togglable buttonLabel="Create New Blog"  ref = {blogFormRef}>
             <BlogForm createNewBlog={handleCreateNewBlog} />
           </Togglable>
-          <BlogList updateBlog = {updateBlog} blogs = {blogs} user = {user} deleteBlog = {deleteBlog}/>
+          <BlogList updateBlog = {updateBlog} user = {user} deleteBlog = {deleteBlog}/>
         </>
       )}
     </div>

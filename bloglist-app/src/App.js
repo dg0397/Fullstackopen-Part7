@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { setMessage } from './reducers/notificationReducer'
+//import { setMessage } from './reducers/notificationReducer'
 
-import blogService from './services/blogs'
-import loginService from './services/login'
+//import blogService from './services/blogs'
+//import loginService from './services/login'
 
 import Togglable from './components/Togglable'
 import BlogForm from './components/BlogForm'
@@ -14,10 +14,11 @@ import Notification from './components/Notification'
 
 import './App.css'
 import { addBlog, initializeBlogs, likeBlog, deleteOneBlog } from './reducers/blogReducer'
+import { login, localStorageLogin, logout } from './reducers/userReducer'
 
 
 const App = () => {
-  const [user, setUser] = useState(null)
+  const user = useSelector(state => state.user)
 
   const blogFormRef = useRef()
   const dispatch = useDispatch()
@@ -29,35 +30,39 @@ const App = () => {
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
     if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      blogService.setToken(user.token)
+      dispatch(localStorageLogin(loggedUserJSON))
+      //const user = JSON.parse(loggedUserJSON)
+      //setUser(user)
+      //blogService.setToken(user.token)
     }
   }, [])
 
   const handleLogIn = async (userData) => {
-    try {
-      const user = await loginService.getLogin(userData)
-      dispatch(setMessage(`Welcome ${user.name}`,5))
-      //setNotification(`Welcome ${user.name}`)
-      //setTimeout(() => {
-      //  setNotification(null)
-      //}, 5000)
-      window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
-      blogService.setToken(user.token)
-      setUser(user)
-    } catch (error) {
-      console.log(error)
-      dispatch(setMessage('Error: Wrong username or password',5))
-      //setNotification('Error: Wrong username or password')
-      //setTimeout(() => {
-      //  setNotification(null)
-      //}, 5000)
-    }
+    dispatch(login(userData))
+
+    //try {
+    //  //const user = await loginService.getLogin(userData)
+    //  //dispatch(setMessage(`Welcome ${user.name}`,5))
+    //  //setNotification(`Welcome ${user.name}`)
+    //  //setTimeout(() => {
+    //  //  setNotification(null)
+    //  //}, 5000)
+    //  //window.localStorage.setItem('loggedBlogAppUser', JSON.stringify(user))
+    //  //blogService.setToken(user.token)
+    //  //setUser(user)
+    //} catch (error) {
+    //  console.log(error)
+    //  dispatch(setMessage('Error: Wrong username or password',5))
+    //  //setNotification('Error: Wrong username or password')
+    //  //setTimeout(() => {
+    //  //  setNotification(null)
+    //  //}, 5000)
+    //}
   }
   const handleLogOut = () => {
-    window.localStorage.clear()
-    setUser(null)
+    dispatch(logout())
+    //window.localStorage.clear()
+    //setUser(null)
   }
   const handleCreateNewBlog = async (blog) => {
     try {

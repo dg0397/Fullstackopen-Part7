@@ -1,12 +1,22 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+
+import { initializeBlogs } from '../reducers/blogReducer'
 
 import Blog from './Blog'
 import ListByButtons from './ListByButtons'
 
 const BlogList = ({ updateBlog, user,deleteBlog }) => {
   const blogs = useSelector(state => state.blogs)
+  const dispatch = useDispatch()
+
   const [order, setOrder] = useState('Normal')
+
+
+  useEffect(() => {
+    dispatch(initializeBlogs())
+  }, [])
+
   let blogsToShow = [...blogs]
 
   if(order === 'Normal'){

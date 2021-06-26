@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Route , Switch } from 'react-router-dom'
 
 //import { setMessage } from './reducers/notificationReducer'
 
 //import blogService from './services/blogs'
 //import loginService from './services/login'
+//import userServices from './services/users'
 
 import Togglable from './components/Togglable'
 import BlogForm from './components/BlogForm'
@@ -13,8 +15,9 @@ import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 
 import './App.css'
-import { addBlog, initializeBlogs, likeBlog, deleteOneBlog } from './reducers/blogReducer'
-import { login, localStorageLogin, logout } from './reducers/userReducer'
+import { addBlog, likeBlog, deleteOneBlog } from './reducers/blogReducer'
+import { login, localStorageLogin, logout } from './reducers/loginReducer'
+import UserList from './components/UserList'
 
 
 const App = () => {
@@ -23,9 +26,6 @@ const App = () => {
   const blogFormRef = useRef()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(initializeBlogs())
-  }, [])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
@@ -121,10 +121,17 @@ const App = () => {
           <Notification />
           <h2>{user.username} Logged in</h2>
           <button onClick={handleLogOut} id = "logout">LogOut</button>
-          <Togglable buttonLabel="Create New Blog"  ref = {blogFormRef}>
-            <BlogForm createNewBlog={handleCreateNewBlog} />
-          </Togglable>
-          <BlogList updateBlog = {updateBlog} user = {user} deleteBlog = {deleteBlog}/>
+          <Switch>
+            <Route path = "/users">
+              <UserList/>
+            </Route>
+            <Route path = "/blogs">
+              <Togglable buttonLabel="Create New Blog"  ref = {blogFormRef}>
+                <BlogForm createNewBlog={handleCreateNewBlog} />
+              </Togglable>
+              <BlogList updateBlog = {updateBlog} user = {user} deleteBlog = {deleteBlog}/>
+            </Route>
+          </Switch>
         </>
       )}
     </div>

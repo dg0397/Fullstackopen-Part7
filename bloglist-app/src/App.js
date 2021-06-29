@@ -18,6 +18,7 @@ import './App.css'
 import { addBlog, likeBlog, deleteOneBlog } from './reducers/blogReducer'
 import { login, localStorageLogin, logout } from './reducers/loginReducer'
 import UserList from './components/UserList'
+import UserView from './components/UserView'
 
 
 const App = () => {
@@ -122,6 +123,9 @@ const App = () => {
           <h2>{user.username} Logged in</h2>
           <button onClick={handleLogOut} id = "logout">LogOut</button>
           <Switch>
+            <Route path = '/users/:id'>
+              <UserView />
+            </Route>
             <Route path = "/users">
               <UserList/>
             </Route>

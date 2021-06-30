@@ -16,7 +16,8 @@ import Notification from './components/Notification'
 
 import './App.css'
 import { addBlog, likeBlog, deleteOneBlog } from './reducers/blogReducer'
-import { login, localStorageLogin, logout } from './reducers/loginReducer'
+import { login, localStorageLogin } from './reducers/loginReducer'
+import Menu from './components/Menu'
 import UserList from './components/UserList'
 import UserView from './components/UserView'
 import BlogView from './components/BlogView'
@@ -61,11 +62,11 @@ const App = () => {
     //  //}, 5000)
     //}
   }
-  const handleLogOut = () => {
-    dispatch(logout())
-    //window.localStorage.clear()
-    //setUser(null)
-  }
+  //const handleLogOut = () => {
+  //  dispatch(logout())
+  //  //window.localStorage.clear()
+  //  //setUser(null)
+  //}
   const handleCreateNewBlog = async (blog) => {
     try {
       blogFormRef.current.toggleVisibility()
@@ -119,10 +120,9 @@ const App = () => {
         <LoginForm handleLogIn = {handleLogIn} />
       ) : (
         <>
-          <h1>Blogs</h1>
+          <Menu user = {user}/>
+          <h1>Blog App</h1>
           <Notification />
-          <h2>{user.username} Logged in</h2>
-          <button onClick={handleLogOut} id = "logout">LogOut</button>
           <Switch>
             <Route path = '/users/:id'>
               <UserView />
@@ -133,7 +133,7 @@ const App = () => {
             <Route path = '/blogs/:id'>
               <BlogView />
             </Route>
-            <Route path = "/blogs">
+            <Route path = "/">
               <Togglable buttonLabel="Create New Blog"  ref = {blogFormRef}>
                 <BlogForm createNewBlog={handleCreateNewBlog} />
               </Togglable>

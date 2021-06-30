@@ -12,3 +12,8 @@ export const useUsersData = (id) => {
   const user = useSelector( state => state.users.find(blog => blog.id === id))
   return { user }
 }
+
+export const useBlogsData = (id) => {
+  const blog = useSelector( state => state.blogs.find( blog => blog.id === id))
+  return { blog }
+}

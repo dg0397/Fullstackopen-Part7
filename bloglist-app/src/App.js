@@ -19,6 +19,7 @@ import { addBlog, likeBlog, deleteOneBlog } from './reducers/blogReducer'
 import { login, localStorageLogin, logout } from './reducers/loginReducer'
 import UserList from './components/UserList'
 import UserView from './components/UserView'
+import BlogView from './components/BlogView'
 
 
 const App = () => {
@@ -128,6 +129,9 @@ const App = () => {
             </Route>
             <Route path = "/users">
               <UserList/>
+            </Route>
+            <Route path = '/blogs/:id'>
+              <BlogView />
             </Route>
             <Route path = "/blogs">
               <Togglable buttonLabel="Create New Blog"  ref = {blogFormRef}>

@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import BlogDetails from './BlogDetails'
+import React from 'react'
+import { Link } from 'react-router-dom'
+//import BlogDetails from './BlogDetails'
 
-const Blog = ({ blog,updateBlog,user, deleteBlog }) => {
-  const [visible, setVisible] = useState(false)
+const Blog = ({ blog }) => {
+  //const [visible, setVisible] = useState(false)
 
   const blogStyle = {
     paddingTop: 10,
@@ -12,27 +13,34 @@ const Blog = ({ blog,updateBlog,user, deleteBlog }) => {
     marginBottom: 5
   }
 
-  const handleClick = () => setVisible(!visible)
-
-  const handleLikeButton = () => {
-    updateBlog({
-      ...blog,
-      likes: blog.likes + 1
-    })
-  }
-
-  const handleRemove = () => {
-    if(window.confirm(`Remove Blog: ${blog.title}! by ${blog.author}`)){
-      deleteBlog(blog)
-    }
-  }
-
+  //const handleClick = () => setVisible(!visible)
+  //
+  //const handleLikeButton = () => {
+  //  updateBlog({
+  //    ...blog,
+  //    likes: blog.likes + 1
+  //  })
+  //}
+  //
+  //const handleRemove = () => {
+  //  if(window.confirm(`Remove Blog: ${blog.title}! by ${blog.author}`)){
+  //    deleteBlog(blog)
+  //  }
+  //}
+  //
+  //return (
+  //  <div style = {blogStyle} className = 'blog'>
+  //    <h3>{blog.title} {blog.author} <button onClick = {handleClick}>{visible ? 'hide' : 'view'}</button> </h3>
+  //    {
+  //      visible && <BlogDetails blog = {blog} user = {user} handleLikeButton = {handleLikeButton} handleRemove = {handleRemove} />
+  //    }
+  //  </div>
+  //)
   return (
     <div style = {blogStyle} className = 'blog'>
-      <h3>{blog.title} {blog.author} <button onClick = {handleClick}>{visible ? 'hide' : 'view'}</button> </h3>
-      {
-        visible && <BlogDetails blog = {blog} user = {user} handleLikeButton = {handleLikeButton} handleRemove = {handleRemove} />
-      }
+      <h3>
+        <Link to = {`/blogs/${blog.id}`}>{blog.title} {blog.author}</Link>
+      </h3>
     </div>
   )
 }

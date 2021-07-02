@@ -14,6 +14,20 @@ const UserView = () => {
       <p><a target= '_blank' href = {blog.url} rel="noreferrer">{blog.url}</a></p>
       <p>{blog.likes} {blog.likes > 1 ? 'likes':'like'}<button>Like</button></p>
       <p>Added by {blog.user.name}</p>
+      {
+        blog.comments.length > 0 && (
+          <div>
+            <h3>Comments</h3>
+            <ul>
+              {
+                blog.comments.map( comment => {
+                  return <li key = {comment}>{comment}</li>
+                })
+              }
+            </ul>
+          </div>
+        )
+      }
     </div>
   )
 }

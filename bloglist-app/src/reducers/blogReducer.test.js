@@ -7,6 +7,7 @@ describe('blogReducer',() => {
     'likes': 35,
     'title': 'Learning GraphQL',
     'url': 'leargrapgql.com',
+    'comments':[],
     'user': {
       'username': 'dg0397',
       'name': 'Dionisio',
@@ -63,5 +64,20 @@ describe('blogReducer',() => {
     const newState = blogReducer(state,action)
     expect(newState).toHaveLength(state.length - 1)
     expect(newState).not.toContainEqual(blogToDelete)
+  })
+  test('a blog can be commented',() => {
+    const state = [blog]
+    const comment = 'This is a great comment'
+    const commentedBlog = { ...blog,comments : [comment] }
+
+    const action = {
+      type : 'ADD_COMMENT',
+      data : commentedBlog
+    }
+
+    deepFreeze(state)
+    const newState = blogReducer(state,action)
+    expect(newState).toHaveLength(state.length)
+    expect(newState).toContainEqual(commentedBlog)
   })
 })

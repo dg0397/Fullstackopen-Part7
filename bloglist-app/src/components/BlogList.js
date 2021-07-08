@@ -34,9 +34,11 @@ const BlogList = ({ updateBlog, user,deleteBlog }) => {
   return (
     <div>
       <ListByButtons handleListSort={handleListSort} />
-      {blogsToShow.map((blog) => (
-        <Blog key={blog.id} blog={blog} updateBlog={updateBlog} user = {user} deleteBlog = {deleteBlog}/>
-      ))}
+      <div id = 'blogs'>
+        {blogsToShow.map((blog) => (
+          <Blog key={blog.id} blog={blog} updateBlog={updateBlog} user = {user} deleteBlog = {deleteBlog}/>
+        ))}
+      </div>
     </div>
   )
 }

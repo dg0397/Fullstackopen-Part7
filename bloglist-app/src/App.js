@@ -115,7 +115,7 @@ const App = () => {
     }
   }
   return (
-    <div>
+    <div id = "main">
       {user === null ? (
         <LoginForm handleLogIn = {handleLogIn} />
       ) : (

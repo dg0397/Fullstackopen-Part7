@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 const Blog = ({ blog }) => {
   //const [visible, setVisible] = useState(false)
 
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5
-  }
+  //const blogStyle = {
+  //  paddingTop: 10,
+  //  paddingLeft: 2,
+  //  border: 'solid',
+  //  borderWidth: 1,
+  //  marginBottom: 5
+  //}
 
   //const handleClick = () => setVisible(!visible)
   //
@@ -37,7 +37,7 @@ const Blog = ({ blog }) => {
   //  </div>
   //)
   return (
-    <div style = {blogStyle} className = 'blog'>
+    <div className = 'blog'>
       <h3>
         <Link to = {`/blogs/${blog.id}`}>{blog.title} {blog.author}</Link>
       </h3>

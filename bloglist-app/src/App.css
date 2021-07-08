@@ -1,3 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: linear-gradient(260deg, #0e71b3 0%, #c16ecf 100%);
+}
+#main{
+    width: 80%;
+    padding: 1rem;
+    margin: 1rem auto 0 auto;
+    border: 1px solid #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #1c1c1c;
+    transition: all .5s ease-in;
+    background-color: white;
+    text-align: center;
+    max-height: 90vh;
+}
+#menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+h1{
+    margin: 1rem auto;
+    font-size: 2rem;
+    font-style: italic;
+    text-decoration: underline;
+}
+#btn-list{
+    display: flex;
+    justify-content: center;
+    margin: 1rem auto;
+}
+#blogs{
+    height: 250px;
+    max-height: 50vh;
+    overflow: scroll;
+}
+#blogs a{
+    color: black;
+    text-decoration: none;
+}
+@media only screen and (min-width: 600px) {
+    #blogs{
+        margin: 1rem auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 200px);
+        grid-gap: 10px;
+        justify-content: center;
+    }
+}
+.blog{
+    border: 1px solid #1c1c1c;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-bottom: .5rem;
+    background-color: aliceblue;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #c1c1c1;
+    transition: all .25s ease-in;
+}
+.blog:hover{
+    background-color: rgba(216, 216, 216, 0.8);
+}
+.formDiv{
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.418);
+    max-width: 550px;
+}
+.input-element{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+input{
+    display: block;
+    margin: .5rem auto;
+    width: 60%;
+    height:2rem;
+    border:none;
+    border:1px solid #1c1c1c;
+    border-radius: 10px;
+    outline:none;
+    padding:.5rem;
+}
+button{
+    margin: .5rem;
+    width: 75px;
+    padding: .5rem;
+    font-size: 14px;
+    font-family: monospace;
+    border:none;
+    box-shadow: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #c1c1c1;
+    transition: all .5s ease;
+    outline: none;
+    cursor: pointer;
+  }
+  button:hover{
+    box-shadow: none;
+}
 .error{
     width: 80%;
     padding: .5rem;

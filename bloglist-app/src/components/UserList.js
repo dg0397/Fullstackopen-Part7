@@ -15,11 +15,11 @@ const UserList = () => {
   return (
     <div>
       <h2>Users</h2>
-      <table>
+      <table id = 'users-table'>
         <thead>
           <tr>
-            <th></th>
-            <th>blogs created</th>
+            <th>User</th>
+            <th>Blogs Created</th>
           </tr>
         </thead>
         <tbody>

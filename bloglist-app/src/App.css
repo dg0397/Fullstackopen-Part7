@@ -9,14 +9,13 @@ body{
 #main{
     width: 80%;
     padding: 1rem;
-    margin: 1rem auto 0 auto;
+    margin: 1rem auto;
     border: 1px solid #1c1c1c;
     border-radius: 10px;
     box-shadow: 5px 5px 10px #1c1c1c;
     transition: all .5s ease-in;
     background-color: white;
     text-align: center;
-    max-height: 90vh;
 }
 #menu{
     display: flex;
@@ -64,6 +63,40 @@ h1{
 }
 .blog:hover{
     background-color: rgba(216, 216, 216, 0.8);
+}
+#users-table{
+    width: 80%;
+    margin: .5rem auto;
+    border-radius: 5px;
+    box-shadow: 2.5px 2.5px 10px #1c1c1c;
+}
+#users-table,th,td{
+    border: 1px solid #1c1c1c;
+    padding: .25rem;
+}
+.user-view h2{
+    text-transform: uppercase;
+}
+.user-view h2, 
+.user-view h3 {
+    font-style: italic;
+}
+.user-view ul,
+.blog-view ul{
+    list-style: none;
+    width: 80%;
+    margin: .5rem auto;
+    max-width: 300px;
+    background-color: #e6e6e696;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 5px 5px 10px #1c1c1c;
+}
+.user-view ul li,
+.blog-view ul li{
+    margin: .25rem auto;
+    text-align: left;
+    font-size: 18px;
 }
 .formDiv{
     margin: 0 auto;

@@ -23,7 +23,7 @@ const UserView = () => {
     return null
   }
   return(
-    <div>
+    <div className = 'blog-view'>
       <h2>{blog.title} {blog.author}</h2>
       <p><a target= '_blank' href = {blog.url} rel="noreferrer">{blog.url}</a></p>
       <p>{blog.likes} {blog.likes > 1 ? 'likes':'like'}<button>Like</button></p>

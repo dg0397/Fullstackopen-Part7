@@ -9,7 +9,7 @@ const UserView = () => {
     return null
   }
   return(
-    <div>
+    <div className = 'user-view'>
       <h2>{user.name}</h2>
       <h3>Added Blogs</h3>
       <ul>

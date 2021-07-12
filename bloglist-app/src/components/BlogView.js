@@ -1,24 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useBlogsData } from '../hooks/useUsersData'
-import { useField } from '../hooks/useField'
-import { useDispatch } from 'react-redux'
-import { addComment } from '../reducers/blogReducer'
+
+import BlogCommentForm from './BlogCommentForm'
 
 const UserView = () => {
   const id = useParams().id
   const { blog } = useBlogsData(id)
-  const dispatch = useDispatch()
-  const comment = useField('text')
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(comment.value)
-    dispatch(addComment(comment.value,id))
-
-    comment.onReset()
-
-  }
   if (!blog) {
     return null
   }
@@ -31,10 +20,7 @@ const UserView = () => {
       {
         <div>
           <h3>Comments</h3>
-          <form onSubmit = { handleSubmit }>
-            <input {...comment}/>
-            <button>Add Comment</button>
-          </form>
+          <BlogCommentForm blogid = { id } />
           {
             blog.comments.length > 0 && (
               <ul>
